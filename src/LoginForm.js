@@ -1,4 +1,3 @@
-import "./style.css";
 import auth from "./firebase-config"
 import { useState, useEffect } from 'react';
 import { createUserWithEmailAndPassword,
