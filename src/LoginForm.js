@@ -1,7 +1,11 @@
 import "./style.css";
-import { useState, useEffect } from 'react';
 import auth from "./firebase-config"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth"; 
+import { useState, useEffect } from 'react';
+import { createUserWithEmailAndPassword,
+         signInWithEmailAndPassword,
+         onAuthStateChanged,
+         signOut
+       } from "firebase/auth";
 
 function LoginForm(){
   const [ email, setEmail ] = useState('')
