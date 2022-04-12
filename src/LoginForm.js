@@ -54,8 +54,8 @@ function LoginForm(){
     }
   }
 
-  const createUser = () => {
-    setIsSigningUp(true)
+  const createUser = (state) => {
+    setIsSigningUp(state)
   }
 
   const logout = async () => {
@@ -87,6 +87,12 @@ function LoginForm(){
             <div className="max-w-md w-full space-y-8">
               <p className="mt-6 text-center text-3xl font-extrabold text-gray-900">Welcome to Hotel Hanap!</p>
               <div>
+                {isSigningUp ?
+                (
+                  <h2 className="my-5">Create your account:</h2>
+                ):(
+                  null
+                )}
                 <input
                   className="appearance-none rounded-none relative block
                     w-full px-3 py-2 border border-gray-300
@@ -116,17 +122,20 @@ function LoginForm(){
 
               { isSigningUp ?
                 (
-                  <div>
-                    <button
-                      className="group relative w-full flex justify-center
-                        py-2 px-4 border border-transparent text-sm font-medium
-                        rounded-md text-white bg-indigo-600 hover:bg-indigo-700
-                        focus:outline-none focus:ring-2 focus:ring-offset-2
-                        focus:ring-indigo-500 "
-                      onClick={signUp}>
-                      Sign Up
-                    </button>
-                  </div>
+                  <>
+                    <div>
+                      <button
+                        className="group relative w-full flex justify-center
+                          py-2 px-4 border border-transparent text-sm font-medium
+                          rounded-md text-white bg-indigo-600 hover:bg-indigo-700
+                          focus:outline-none focus:ring-2 focus:ring-offset-2
+                          focus:ring-indigo-500 "
+                        onClick={signUp}>
+                        Sign Up
+                      </button>
+                    </div>
+                    <p className="pt-5 text-center text-gray-500">Already have an account? Click <button className="underline" onClick={() => createUser(false)}>here</button> to sign in.</p>
+                  </>
                 )
                 :
                 (
@@ -142,7 +151,7 @@ function LoginForm(){
                         Sign In
                       </button>
                     </div>
-                    <p className="pt-5 text-center text-gray-500">Don't have an account? Click <button className="underline" onClick={createUser}>here</button> to sign up.</p>
+                    <p className="pt-5 text-center text-gray-500">Don't have an account? Click <button className="underline" onClick={() => createUser(true)}>here</button> to sign up.</p>
                   </>
                 )
               }
