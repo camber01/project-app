@@ -10,6 +10,7 @@ function LoginForm(){
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
+  const [ isSigningUp, setIsSigningUp ] = useState(false)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -53,6 +54,10 @@ function LoginForm(){
     }
   }
 
+  const createUser = () => {
+    setIsSigningUp(true)
+  }
+
   const logout = async () => {
     try{
       await signOut(auth)
@@ -68,7 +73,7 @@ function LoginForm(){
   }
 
   return (
-    <>
+    <div>
       {isLoggedIn ?
         (
           <div>
@@ -78,36 +83,75 @@ function LoginForm(){
         )
       :
         ( 
-          <div>
-            <div className="form-label">
-              <label>Username:</label>
-              <input
-                className="input-style"
-                onChange={(event) => setEmail(event.target.value)}
-                type="text"
-                value={email}
-               />
-            </div>
+          <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md w-full space-y-8">
+              <p className="mt-6 text-center text-3xl font-extrabold text-gray-900">Welcome to Hotel Hanap!</p>
+              <div>
+                <input
+                  className="appearance-none rounded-none relative block
+                    w-full px-3 py-2 border border-gray-300
+                    placeholder-gray-500 text-gray-900 rounded-t-md
+                    focus:outline-none focus:ring-indigo-500
+                    focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  onChange={(event) => setEmail(event.target.value)}
+                  type="text"
+                  value={email}
+                  placeholder="Email Address"
+                />
+              </div>
 
-            <div className="form-label">
-              <label>Password:</label>
-              <input
-                className="input-style"
-                onChange={(event) => setPassword(event.target.value)}
-                type="password"
-                value={password}
-               />
-            </div>
+              <div>
+                <input
+                  className="appearance-none rounded-none relative block
+                    w-full px-3 py-2 border border-gray-300
+                    placeholder-gray-500 text-gray-900 rounded-b-md
+                    focus:outline-none focus:ring-indigo-500
+                    focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  onChange={(event) => setPassword(event.target.value)}
+                  type="password"
+                  value={password}
+                  placeholder="Password"
+                />
+              </div>
 
-            <div className="form-label">
-              <button className="btn-submit" onClick={login} > Login </button>
-              <button className="btn-submit" onClick={signUp} > SignUp </button>
-            </div>
+              { isSigningUp ?
+                (
+                  <div>
+                    <button
+                      className="group relative w-full flex justify-center
+                        py-2 px-4 border border-transparent text-sm font-medium
+                        rounded-md text-white bg-indigo-600 hover:bg-indigo-700
+                        focus:outline-none focus:ring-2 focus:ring-offset-2
+                        focus:ring-indigo-500 "
+                      onClick={signUp}>
+                      Sign Up
+                    </button>
+                  </div>
+                )
+                :
+                (
+                  <>
+                    <div>
+                      <button
+                        className="group relative w-full flex justify-center
+                          py-2 px-4 border border-transparent text-sm font-medium
+                          rounded-md text-white bg-indigo-600 hover:bg-indigo-700
+                          focus:outline-none focus:ring-2 focus:ring-offset-2
+                          focus:ring-indigo-500"
+                        onClick={login}>
+                        Sign In
+                      </button>
+                    </div>
+                    <p className="pt-5 text-center text-gray-500">Don't have an account? Click <button className="underline" onClick={createUser}>here</button> to sign up.</p>
+                  </>
+                )
+              }
 
+            </div>
           </div>
         )
       }
-    </>
+    </div>
   )
 }
 
