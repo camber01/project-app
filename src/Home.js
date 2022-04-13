@@ -62,7 +62,7 @@ export default function Home() {
 				Hotel Booking <span className="text-active">App</span>
 			</h1>
 			<h2 className="text-active text-2xl mt-6">
-				Discover and Book Hotels using Hotels API from RapidAPI Hub.
+				Looking for a place to stay during your vacation? We got you!
 			</h2>
 			<div className="sm:mx-auto mt-20 justify-center sm:w-full sm:flex">
 				<input
