@@ -40,7 +40,7 @@ export default function Home() {
 					"adults1": guests,
 					"sortOrder" : 'PRICE',
 					"locale" : 'en_US',
-					"currency" : 'USD'
+					"currency" : 'PHP'
 				},
 				headers: {
 					"x-rapidapi-host": "hotels4.p.rapidapi.com",
