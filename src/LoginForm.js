@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword,
          onAuthStateChanged,
          signOut
        } from "firebase/auth";
+import Home from "./Home";
 
 function LoginForm(){
   const [ email, setEmail ] = useState('')
@@ -77,8 +78,8 @@ function LoginForm(){
       {isLoggedIn ?
         (
           <div>
-            <h1>Hello, {email}!</h1>
             <button className="btn-submit" onClick={logout} > Logout </button>
+            <Home email={email} />
           </div> 
         )
       :
@@ -136,9 +137,7 @@ function LoginForm(){
                     </div>
                     <p className="pt-5 text-center text-gray-500">Already have an account? Click <button className="underline" onClick={() => createUser(false)}>here</button> to sign in.</p>
                   </>
-                )
-                :
-                (
+                ):(
                   <>
                     <div>
                       <button
