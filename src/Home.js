@@ -59,7 +59,7 @@ export default function Home() {
 	return (
 		<div className="flex flex-col md:px-12 px-0 relative bg-background font-raleway items-center min-h-screen">
 			<h1 className="text-6xl text-primary font-bold mt-20">
-				Hotel Booking <span className="text-active">App</span>
+				Hotel Hanap <span className="text-active">App</span>
 			</h1>
 			<h2 className="text-active text-2xl mt-6">
 				Looking for a place to stay during your vacation? We got you!
