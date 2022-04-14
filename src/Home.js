@@ -8,13 +8,12 @@ export default function Home() {
 	const [checkOut, setCheckOut] = useState(null);
 	const [guests, setGuests] = useState(null);
 	const [hotels, setHotels] = useState(null);
+
 	const API_KEY = process.env.REACT_APP_RAPIDAPI_KEY;
 	const API_HOST = process.env.REACT_APP_RAPIDAPI_HOST;
 
 	const getCity = async () => {
 		try {
-			console.log(API_HOST)
-			console.log({searchCity})
 			const res = await axios.get('https://hotels4.p.rapidapi.com/locations/v2/search', {
 				params: { "query" : searchCity},
 				headers: {
@@ -22,7 +21,6 @@ export default function Home() {
 					"x-rapidapi-key": API_KEY
 				}
 			});
-			console.log(res.data)
 
 			const {data} = res;
 			setCity(data.suggestions[0].entities[0].destinationId);
@@ -50,7 +48,6 @@ export default function Home() {
 					"x-rapidapi-key": API_KEY
 				}
 			});
-			console.log(res.data)
 
 			const {data} = res;
 			setHotels(data.data.body);
