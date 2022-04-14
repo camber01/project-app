@@ -8,15 +8,18 @@ export default function Home() {
 	const [checkOut, setCheckOut] = useState(null);
 	const [guests, setGuests] = useState(null);
 	const [hotels, setHotels] = useState(null);
+	const API_KEY = process.env.REACT_APP_RAPIDAPI_KEY;
+	const API_HOST = process.env.REACT_APP_RAPIDAPI_HOST;
 
 	const getCity = async () => {
 		try {
+			console.log(API_HOST)
 			console.log({searchCity})
 			const res = await axios.get('https://hotels4.p.rapidapi.com/locations/v2/search', {
 				params: { "query" : searchCity},
 				headers: {
-					"x-rapidapi-host": "hotels4.p.rapidapi.com",
-					"x-rapidapi-key": '5a1ab81ad6msh00200f27d857394p1d26e0jsnfcc4ad9d36d7',
+					"x-rapidapi-host": API_HOST,
+					"x-rapidapi-key": API_KEY
 				}
 			});
 			console.log(res.data)
@@ -43,8 +46,8 @@ export default function Home() {
 					"currency" : 'PHP'
 				},
 				headers: {
-					"x-rapidapi-host": "hotels4.p.rapidapi.com",
-					"x-rapidapi-key": '5a1ab81ad6msh00200f27d857394p1d26e0jsnfcc4ad9d36d7',
+					"x-rapidapi-host": API_HOST,
+					"x-rapidapi-key": API_KEY
 				}
 			});
 			console.log(res.data)
