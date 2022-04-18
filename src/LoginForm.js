@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword,
          signOut
        } from "firebase/auth";
 import Home from "./Home";
+import { LogoutIcon } from "@heroicons/react/outline";
 
 function LoginForm(){
   const [ email, setEmail ] = useState('')
@@ -77,9 +78,10 @@ function LoginForm(){
     <div>
       {isLoggedIn ?
         (
-          <div>
-            <button className="btn-submit" onClick={logout} > Logout </button>
-            <Home email={email} />
+          <div className="flex-row">
+            <button className="px-5 py-3 bg-indigo-800 font-medium text-white sm:px-10 absolute top-0 right-0"
+            onClick={logout} ><LogoutIcon className="h-5 w-5" /> </button>
+            <Home />
           </div> 
         )
       :

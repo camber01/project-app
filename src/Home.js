@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {useState} from 'react';
+import { SearchIcon } from '@heroicons/react/outline';
 
 export default function Home() {
 	const [searchCity, setSearchCity] = useState(null);
@@ -58,16 +59,16 @@ export default function Home() {
 
 	return (
 		<div className="flex flex-col md:px-12 px-0 relative bg-background font-raleway items-center min-h-screen">
-			<h1 className="text-6xl text-primary font-bold mt-20">
-				Hotel Hanap <span className="text-active">App</span>
+			<h1 className="text-6xl text-zinc-700 font-bold mt-20">
+				Hotel Hanap <span className="text-indigo-800">App</span>
 			</h1>
-			<h2 className="text-active text-2xl mt-6">
+			<h2 className="text-indigo-800 text-2xl mt-6">
 				Looking for a place to stay during your vacation? We got you!
 			</h2>
 			<div className="sm:mx-auto mt-20 justify-center sm:w-full sm:flex">
 				<input
 					type="text"
-					className="block w-1/3 border border-transparent rounded-md px-5 py-3 text-base text-background shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-active"
+					className="block w-1/3 border rounded-md px-5 py-3 text-base text-background shadow-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-active"
 					placeholder="Enter your destination city"
 					onChange={e => {
 						setCity(null);
@@ -76,17 +77,17 @@ export default function Home() {
 				/>
 				<div className="mt-4 sm:mt-0 sm:ml-3">
 					<button
-						className="block w-full rounded-md px-5 py-3 bg-active text-base font-medium text-primary focus:outline-none focus:ring-2 focus:ring-primary sm:px-10"
+						className="rounded-md px-5 py-3 bg-indigo-800 font-medium text-white sm:px-10"
 						onClick={() => getCity()} // Call getCity() when clicked
 					>
-						Search
+						<SearchIcon className='h-6 w-5' />
 					</button>
 				</div>
 			</div>
 			{city && (
 				<div className="mt-10 w-full sm:mx-auto lg:mx-0">
 					<div className="md:grid md:grid-cols-6 gap-1 flex flex-col">
-						<div className="rounded-l-lg col-span-2 col-span-2 flex flex-col py-2 items-center bg-primary">
+						<div className="rounded-l-lg col-span-2 flex flex-col py-2 items-center bg-primary">
 							<label
 								for="check-in"
 								className="py-2 text-sm font-semibold uppercase"
