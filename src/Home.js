@@ -78,7 +78,7 @@ export default function Home() {
 				<div className="mt-4 sm:mt-0 sm:ml-3">
 					<button
 						className="rounded-md px-5 py-3 bg-indigo-800 font-medium text-white sm:px-10"
-						onClick={() => getCity()} // Call getCity() when clicked
+						onClick={() => getCity()}
 					>
 						<SearchIcon className='h-6 w-5' />
 					</button>
@@ -87,7 +87,7 @@ export default function Home() {
 			{city && (
 				<div className="mt-10 w-full sm:mx-auto lg:mx-0">
 					<div className="md:grid md:grid-cols-6 gap-1 flex flex-col">
-						<div className="rounded-l-lg col-span-2 flex flex-col py-2 items-center bg-primary">
+						<div className="rounded-l-lg col-span-2 flex flex-col py-2 items-center bg-zinc-700 text-white">
 							<label
 								for="check-in"
 								className="py-2 text-sm font-semibold uppercase"
@@ -97,10 +97,11 @@ export default function Home() {
 							<input
 								id="startDate"
 								type="date"
+								className='text-black'
 								onChange={e => setCheckIn(e.target.value)}
 							/>
 						</div>
-						<div className="col-span-2 py-2 flex flex-col items-center bg-primary">
+						<div className="col-span-2 py-2 flex flex-col items-center bg-primary bg-zinc-700 text-white">
 							<label
 								for="check-out"
 								className="py-2 text-sm font-semibold uppercase"
@@ -110,10 +111,11 @@ export default function Home() {
 							<input
 								id="check-out"
 								type="date"
+								className='text-black'
 								onChange={e => setCheckOut(e.target.value)}
 							/>
 						</div>
-						<div className="col-span-1 py-2 flex flex-col items-center bg-primary overflow-hidden">
+						<div className="col-span-1 py-2 flex flex-col items-center bg-primary overflow-hidden bg-zinc-700 text-white">
 							<label
 								for="guests"
 								className="py-2 text-sm font-semibold uppercase"
@@ -124,15 +126,15 @@ export default function Home() {
 								id="guests"
 								type="number"
 								placeholder="Total guests"
-								className=" text-center"
+								className=" text-center text-black"
 								onChange={e => setGuests(e.target.value)}
 							/>
 						</div>
-						<div className="col-span-1 bg-active hover:opacity-80 rounded-r-lg">
+						<div className="rounded-r-lg col-span-1 bg-indigo-800 text-white hover:opacity-80">
 							<button
 								type="submit"
-								className="w-full h-full md:py-0 py-4 text-primary font-bold break-words"
-								onClick={() => getHotels()} // Call getHotels() when clicked
+								className="w-full h-full md:py-0 py-4 font-bold break-words"
+								onClick={() => getHotels()}
 							>
 								Find Hotels
 							</button>
@@ -144,12 +146,12 @@ export default function Home() {
 				<div className="mt-16">
 					<h3 className="text-secondary text-2xl">
 						Hotels in{' '}
-						<span className="text-active">{hotels.header}</span>
+						<span className="text-indigo-700">{hotels.header}</span>
 					</h3>
 					<div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 						{hotels.searchResults.results.map(hotel => (
-							<div key={hotel.id} className="pt-6">
-								<div className="flow-root bg-light rounded-lg px-2 pb-6">
+							<div key={hotel.id} className="pt-8">
+								<div className="flow-root bg-zinc-600 rounded-lg px-2 pb-6">
 									<div className="-mt-6">
 										<div className="flex items-center justify-center">
 											<span className="p-3 rounded-md shadow-lg">
@@ -165,11 +167,11 @@ export default function Home() {
 											</span>
 										</div>
 										<div className="text-center justify-center items-center">
-											<h3 className="mt-2 text-lg text-center font-medium text-primary tracking-tight">
+											<h3 className="mt-2 text-lg text-center font-medium text-white tracking-tight">
 												{hotel.name}
 											</h3>
 											<div className="flex flex-col mt-5 items-center">
-												<span className="mt-2 mb-4 max-w-xs text-sm text-secondary block">
+												<span className="mt-2 mb-4 max-w-xs text-sm text-white block">
 													Rating:{' '}
 													{hotel.guestReviews
 														?.rating && (
@@ -182,7 +184,7 @@ export default function Home() {
 														</>
 													)}
 												</span>
-												<span className="text-2xl font-bold text-active">
+												<span className="text-2xl font-bold text-indigo-400">
 													{
 														hotel.ratePlan?.price
 															.current
