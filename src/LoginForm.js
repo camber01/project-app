@@ -78,9 +78,9 @@ function LoginForm(){
     <div>
       {isLoggedIn ?
         (
-          <div className="flex-row">
-            <button className="px-5 py-3 bg-indigo-800 font-medium text-white sm:px-10 absolute top-0 right-0"
-            onClick={logout} ><LogoutIcon className="h-5 w-5" /> </button>
+          <div>
+            <button className="px-5 py-3 bg-indigo-800 font-medium text-white sm:px-10"
+            onClick={logout} ><LogoutIcon className="h-5 w-5" /></button>
             <Home />
           </div> 
         )
