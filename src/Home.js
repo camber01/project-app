@@ -59,7 +59,7 @@ export default function Home() {
 
 	return (
 		<div className="flex flex-col md:px-12 px-0 relative bg-background font-raleway items-center min-h-screen">
-			<h1 className="text-6xl text-zinc-700 font-bold mt-20">
+			<h1 className="text-6xl text-zinc-700 font-bold mt-20 text-center">
 				Hotel Hanap <span className="text-indigo-800">App</span>
 			</h1>
 			<h2 className="text-indigo-800 text-2xl mt-6 text-center">
