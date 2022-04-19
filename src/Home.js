@@ -65,10 +65,10 @@ export default function Home() {
 			<h2 className="text-indigo-800 text-2xl mt-6 text-center px-3">
 				Looking for a place to stay during your vacation? We got you!
 			</h2>
-			<div className="sm:mx-auto mt-20 justify-center sm:w-full sm:flex">
+			<div className="sm:mx-auto mt-20 justify-center sm:w-full sm:flex text-center">
 				<input
 					type="text"
-					className="block border rounded-md px-5 py-3 text-base text-background shadow-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-active"
+					className="block border rounded-md w-screen px-5 py-3 text-base text-background shadow-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-active"
 					placeholder="Enter your destination city"
 					onChange={e => {
 						setCity(null);
