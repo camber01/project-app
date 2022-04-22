@@ -112,7 +112,7 @@ function LoginForm(){
           ( 
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
               <div className="max-w-md w-full space-y-8">
-                <p className="mt-6 text-center text-3xl font-extrabold text-gray-900">Welcome to Hotel Hanap!</p>
+                <p className="mt-6 text-center text-3xl font-extrabold text-gray-900">Welcome to <span className="text-indigo-800">Hotel Hanap!</span></p>
                 <div>
                   {isSigningUp ?
                   (
