@@ -102,7 +102,7 @@ function LoginForm(){
         <>
         {isLoggedIn ?
           (
-            <div>
+            <div className="bg-indigo-50">
               <button className="px-5 py-3 bg-indigo-800 font-medium text-white sm:px-10"
               onClick={logout} ><LogoutIcon className="h-5 w-5" /></button>
               <Home />

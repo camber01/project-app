@@ -80,7 +80,7 @@ export default function Home() {
 				<SyncLoader color={"#5C109E"} loading={loading} size={15} css={override} />
 			:
 			<>
-				<div className="flex flex-col md:px-12 px-0 relative bg-background font-raleway items-center min-h-screen">
+				<div className="flex flex-col md:px-12 px-0 relative bg-indigo-50 font-raleway items-center min-h-screen">
 				<h1 className="text-6xl text-zinc-700 font-bold mt-20 text-center px-3">
 					Hotel Hanap <span className="text-indigo-800">App</span>
 				</h1>
@@ -109,7 +109,7 @@ export default function Home() {
 				{city && (
 					<div className="mt-10 w-full sm:mx-auto lg:mx-0">
 						<div className="md:grid md:grid-cols-6 gap-1 flex flex-col">
-							<div className="rounded-l-lg col-span-2 flex flex-col py-2 items-center bg-zinc-700 text-white">
+							<div className="rounded-l-lg col-span-2 flex flex-col py-2 items-center bg-zinc-200">
 								<label
 									for="check-in"
 									className="py-2 text-sm font-semibold uppercase"
@@ -123,7 +123,7 @@ export default function Home() {
 									onChange={e => setCheckIn(e.target.value)}
 								/>
 							</div>
-							<div className="col-span-2 py-2 flex flex-col items-center bg-primary bg-zinc-700 text-white">
+							<div className="col-span-2 py-2 flex flex-col items-center bg-primary bg-zinc-200">
 								<label
 									for="check-out"
 									className="py-2 text-sm font-semibold uppercase"
@@ -137,7 +137,7 @@ export default function Home() {
 									onChange={e => setCheckOut(e.target.value)}
 								/>
 							</div>
-							<div className="col-span-1 py-2 flex flex-col items-center bg-primary overflow-hidden bg-zinc-700 text-white">
+							<div className="col-span-1 py-2 flex flex-col items-center bg-primary overflow-hidden bg-zinc-200">
 								<label
 									for="guests"
 									className="py-2 text-sm font-semibold uppercase"
@@ -176,7 +176,7 @@ export default function Home() {
 									<div className="flow-root bg-zinc-600 rounded-lg px-2 pb-6">
 										<div className="-mt-6">
 											<div className="flex items-center justify-center">
-												<span className="p-3 rounded-md shadow-lg">
+												<span className="p-3 rounded-md shadow-lg bg-indigo-200">
 													<img
 														src={
 															hotel.optimizedThumbUrls
