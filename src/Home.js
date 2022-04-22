@@ -11,6 +11,7 @@ export default function Home() {
 	const [guests, setGuests] = useState(null);
 	const [hotels, setHotels] = useState(null);
 	const [loading, setLoading] =useState(false)
+	const [hotelDetails, setHotelDetails] = useState(null)
 
 	const API_KEY = process.env.REACT_APP_RAPIDAPI_KEY;
 	const API_HOST = process.env.REACT_APP_RAPIDAPI_HOST;
@@ -64,6 +65,36 @@ export default function Home() {
 			setLoading(false)
 		}
 	};
+	
+	const getHotelInfo = async (hotelId) => {
+		setCity(null)
+		setHotels(null)
+		try {
+			setLoading(true)
+			const res = await axios.get('https://hotels4.p.rapidapi.com/properties/get-details', {
+				params: {
+					"id" : hotelId,
+					"checkIn" : checkIn,
+					"checkOut" : checkOut,
+					"adults1": guests,
+					"currency" : 'PHP',
+					"locale" : 'en_US'
+				},
+				headers: {
+					"x-rapidapi-host": API_HOST,
+					"x-rapidapi-key": API_KEY
+				}
+			});
+
+			const {data} = res;
+			console.log(data.data.body)
+			setHotelDetails(data.data.body);
+			setLoading(false)
+		} catch (error) {
+			console.log(error);
+			setLoading(false)
+		}
+	};
 
 	const override = `
 	display: flex;
@@ -80,7 +111,7 @@ export default function Home() {
 				<SyncLoader color={"#5C109E"} loading={loading} size={15} css={override} />
 			:
 			<>
-				<div className="flex flex-col md:px-12 px-0 relative bg-background font-raleway items-center min-h-screen">
+				<div className="flex flex-col md:px-12 px-0 relative bg-background font-raleway items-center min-h-screen bg-indigo-50">
 				<h1 className="text-6xl text-zinc-700 font-bold mt-20 text-center px-3">
 					Hotel Hanap <span className="text-indigo-800">App</span>
 				</h1>
@@ -94,6 +125,7 @@ export default function Home() {
 						placeholder="Enter your destination city"
 						onChange={e => {
 							setCity(null);
+							setHotelDetails(null)
 							setSearchCity(e.target.value);
 						}}
 					/>
@@ -109,7 +141,7 @@ export default function Home() {
 				{city && (
 					<div className="mt-10 w-full sm:mx-auto lg:mx-0">
 						<div className="md:grid md:grid-cols-6 gap-1 flex flex-col">
-							<div className="rounded-l-lg col-span-2 flex flex-col py-2 items-center bg-zinc-700 text-white">
+							<div className="rounded-l-lg col-span-2 flex flex-col py-2 items-center bg-zinc-200">
 								<label
 									for="check-in"
 									className="py-2 text-sm font-semibold uppercase"
@@ -123,7 +155,7 @@ export default function Home() {
 									onChange={e => setCheckIn(e.target.value)}
 								/>
 							</div>
-							<div className="col-span-2 py-2 flex flex-col items-center bg-primary bg-zinc-700 text-white">
+							<div className="col-span-2 py-2 flex flex-col items-center bg-primary bg-zinc-200">
 								<label
 									for="check-out"
 									className="py-2 text-sm font-semibold uppercase"
@@ -137,7 +169,7 @@ export default function Home() {
 									onChange={e => setCheckOut(e.target.value)}
 								/>
 							</div>
-							<div className="col-span-1 py-2 flex flex-col items-center bg-primary overflow-hidden bg-zinc-700 text-white">
+							<div className="col-span-1 py-2 flex flex-col items-center bg-primary overflow-hidden bg-zinc-200">
 								<label
 									for="guests"
 									className="py-2 text-sm font-semibold uppercase"
@@ -152,7 +184,7 @@ export default function Home() {
 									onChange={e => setGuests(e.target.value)}
 								/>
 							</div>
-							<div className="rounded-r-lg col-span-1 bg-indigo-800 text-white hover:opacity-80">
+							<div className="rounded-r-lg col-span-1 bg-indigo-700 text-white hover:opacity-80">
 								<button
 									type="submit"
 									className="w-full h-full md:py-0 py-4 font-bold break-words"
@@ -190,7 +222,9 @@ export default function Home() {
 											</div>
 											<div className="text-center justify-center items-center">
 												<h3 className="mt-2 text-lg text-center font-medium text-white tracking-tight">
-													{hotel.name}
+													<button onClick={() => getHotelInfo(hotel.id)} >
+														{hotel.name}
+													</button>
 												</h3>
 												<div className="flex flex-col mt-5 items-center">
 													<span className="mt-2 mb-4 max-w-xs text-sm text-white block">
@@ -218,6 +252,51 @@ export default function Home() {
 									</div>
 								</div>
 							))}
+						</div>
+					</div>
+				)}
+				{hotelDetails && (
+					<div className='w-full bg-indigo-50 mt-10'>
+						<div className="text-6xl text-zinc-700 font-bold mt-20 text-center px-3">
+							{hotelDetails.propertyDescription.name}
+						</div>
+						<div className='flex items-center justify-center'>
+							<div className="text-lg text-zinc-700 mt-5 p-5 w-9/12 bg-indigo-100 rounded-md">
+								<div className="text-lg text-zinc-700 mt-3 px-3 text-left">
+									<b className='text-indigo-800'>Address:</b>{' '}{hotelDetails.propertyDescription.address.fullAddress}
+								</div>
+								<div className="text-lg text-zinc-700 mt-3 px-3 text-left">
+									<b className='text-indigo-800'>Price:</b>{' '}{hotelDetails.propertyDescription.featuredPrice.currentPrice.formatted}
+								</div>
+								<div className="text-lg text-zinc-700 mt-3 px-3 text-left">
+									<b className='text-indigo-800'>Star Rating:</b>{' '}{hotelDetails.propertyDescription.starRatingTitle}
+								</div>
+							</div>
+						</div>
+
+						<div className="flex items-center justify-center">
+
+						</div>
+
+						<div className='flex items-center justify-center'>
+							<div className="text-lg text-zinc-700 mt-10 p-5 w-9/12 bg-indigo-100 rounded-md">
+								<b className='text-indigo-800 text-center'><center>Why choose us?</center></b>
+								{hotelDetails.overview.overviewSections[0].content.map((item, index) => (
+									<ul className='list-disc flex-auto'>
+										<li key={index} className="ml-10">{item}</li>
+									</ul>
+								))}
+							</div>
+						</div>
+						<div className='flex items-center justify-center mb-10'>
+							<div className="text-lg text-zinc-700 mt-10 p-5 w-9/12 bg-indigo-100 rounded-md">
+								<b className='text-indigo-800 text-center'><center>Rooms</center></b>
+								{' '}{hotelDetails.propertyDescription.roomTypeNames.map((item, index) => (
+									<ul className='list-disc flex-auto'>
+										<li key={index} className="ml-10">{item}</li>
+									</ul>
+								))}
+							</div>
 						</div>
 					</div>
 				)}
